@@ -1,5 +1,5 @@
-from worker import start_routine, change_product, URL
-from visualizer import visualize
+from worker import start_routine
+from main import clear
 import requests
 from tkinter import font
 import tkinter
@@ -7,33 +7,44 @@ import tkinter
 top = tkinter.Tk()
 top.geometry("600x400")
 top.resizable(0, 0)
-helv36 = font.Font(family='Helvetica', size=18, weight=font.BOLD)
+top.configure(background = "white")
 
-def log():
-    print("test")
-def close_window():
-    top.destroy()
+helv18 = font.Font(family='Helvetica', size=18, weight=font.BOLD)
+helv36 = font.Font(family='Helvetica', size=36, weight=font.BOLD)
 
-scrapeBtn = tkinter.Button(top, text="Start scraping", command=log, font=helv36)
-scrapeBtn.place(x = 214.5, y = 80)
+
+
+canvas = tkinter.Canvas(top, width = 600, height = 100, bd = 0, highlightthickness = 0,  background = "white")
+canvas.create_text(300, 50, text = "Amazon price tracker", font = helv36)
+canvas.pack()
+top.update()
+
+scrapeBtn = tkinter.Button(top, text="Start scraping", command=scrape, font=helv18)
+scrapeBtn.place(x = 208, y = 120)
 scrapeBtn.update()
-print("Scrape: ", scrapeBtn.winfo_height(), " - ", scrapeBtn.winfo_width())
+#print("Scrape: ", scrapeBtn.winfo_height(), " - ", scrapeBtn.winfo_width())
 
-visBtn = tkinter.Button(top, text="Visualize the Data", command=log, font=helv36)
-visBtn.place(x = 192.5, y = 140)
+visBtn = tkinter.Button(top, text="Visualize the Data", command=log, font=helv18)
+visBtn.place(x = 186.5, y = 180)
 visBtn.update()
-print("Vis: ", visBtn.winfo_height(), " - ", visBtn.winfo_width())
+#print("Vis: ", visBtn.winfo_height(), " - ", visBtn.winfo_width())
 
-changeBtn = tkinter.Button(top, text="Change the Product", command=log, font=helv36)
-changeBtn.place(x = 180, y = 200)
+changeBtn = tkinter.Button(top, text="Change the Product", command=log, font=helv18)
+changeBtn.place(x = 174, y = 240)
 changeBtn.update()
-print("Change: ", changeBtn.winfo_height(), " - ", changeBtn.winfo_width())
+#print("Change: ", changeBtn.winfo_height(), " - ", changeBtn.winfo_width())
 
-exitBtn = tkinter.Button(top, text="Exit", command=close_window, font=helv36)
-exitBtn.place(x = 267.5, y = 260)
+exitBtn = tkinter.Button(top, text="Exit", command=close_window, font=helv18)
+exitBtn.place(x = 266.5, y = 300)
 exitBtn.update()
-print("Exit: ", exitBtn.winfo_height(), " - ", exitBtn.winfo_width())
+#print("Exit: ", exitBtn.winfo_height(), " - ", exitBtn.winfo_width())
 
 
 
 top.mainloop()
+
+def scrape():
+    clear()
+    #start_routine()
+def close_window():
+    top.destroy()
