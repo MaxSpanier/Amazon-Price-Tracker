@@ -1,4 +1,4 @@
-from worker import start_routine
+#from worker import start_routine
 from main import clear
 import requests
 from tkinter import font
@@ -12,6 +12,19 @@ top.configure(background = "white")
 helv18 = font.Font(family='Helvetica', size=18, weight=font.BOLD)
 helv36 = font.Font(family='Helvetica', size=36, weight=font.BOLD)
 
+def start_scraping():
+    clear()
+    #start_routine()
+    print("scrape")
+
+def close_window():
+    top.destroy()
+
+def log_vis():
+    print("vis")
+
+def log_change():
+    print("change")
 
 
 canvas = tkinter.Canvas(top, width = 600, height = 100, bd = 0, highlightthickness = 0,  background = "white")
@@ -19,17 +32,17 @@ canvas.create_text(300, 50, text = "Amazon price tracker", font = helv36)
 canvas.pack()
 top.update()
 
-scrapeBtn = tkinter.Button(top, text="Start scraping", command=scrape, font=helv18)
+scrapeBtn = tkinter.Button(top, text="Start scraping", command=start_scraping, font=helv18)
 scrapeBtn.place(x = 208, y = 120)
 scrapeBtn.update()
 #print("Scrape: ", scrapeBtn.winfo_height(), " - ", scrapeBtn.winfo_width())
 
-visBtn = tkinter.Button(top, text="Visualize the Data", command=log, font=helv18)
+visBtn = tkinter.Button(top, text="Visualize the Data", command=log_vis, font=helv18)
 visBtn.place(x = 186.5, y = 180)
 visBtn.update()
 #print("Vis: ", visBtn.winfo_height(), " - ", visBtn.winfo_width())
 
-changeBtn = tkinter.Button(top, text="Change the Product", command=log, font=helv18)
+changeBtn = tkinter.Button(top, text="Change the Product", command=log_change, font=helv18)
 changeBtn.place(x = 174, y = 240)
 changeBtn.update()
 #print("Change: ", changeBtn.winfo_height(), " - ", changeBtn.winfo_width())
@@ -42,9 +55,3 @@ exitBtn.update()
 
 
 top.mainloop()
-
-def scrape():
-    clear()
-    #start_routine()
-def close_window():
-    top.destroy()
