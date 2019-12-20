@@ -1,5 +1,3 @@
-#from worker import start_routine
-from main import clear
 import requests
 from tkinter import font
 import tkinter
@@ -12,9 +10,14 @@ top.configure(background = "white")
 helv18 = font.Font(family='Helvetica', size=18, weight=font.BOLD)
 helv36 = font.Font(family='Helvetica', size=36, weight=font.BOLD)
 
-def start_scraping():
+def clear_console():
+    from main import clear
     clear()
-    #start_routine()
+
+def start_scraping():
+    clear_console()
+    from worker import start_routine
+    start_routine()
     print("scrape")
 
 def close_window():
